@@ -1,27 +1,22 @@
 package com.apprentice.ti8m.myfirstrestclient;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.apprentice.ti8m.myfirstrestclient.model.Pizza;
 
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity2 extends AppCompatActivity {
+public class MainActivityOld extends AppCompatActivity {
 
     TextView responseText;
     APIInterface apiInterface;
-    ListView listView;
 
 
     @Override
@@ -29,7 +24,6 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView) findViewById(R.id.listview);
         responseText = (TextView) findViewById(R.id.responseText);
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
@@ -39,9 +33,19 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) {
                 Log.d("TAG", response.code() + " ");
+                String displayResponse = "";
                 List<Pizza> pizzas = (List<Pizza>) response.body();
+                if (pizzas != null) {
+                    for (Pizza p : pizzas) {
+                        String name = p.getName();
+                        Float price = p.getPrice();
+                        Integer id = p.getId();
+                        displayResponse += id + ": " + name + "=" + price + "\n";
+                    }
 
-               // ArrayAdapter<Pizza> adapter = new ArrayAdapter<Pizza>(this, android.R.layout.simple_list_item_1, pizzas);
+                }
+                responseText.setText(displayResponse);
+
             }
 
             @Override
@@ -52,5 +56,4 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
     }
-
 }

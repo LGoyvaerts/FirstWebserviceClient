@@ -18,6 +18,10 @@ public class Pizza {
     private Integer id;
 
 
+    public Pizza(String name, Float price){
+       this(name, price, null);
+    }
+
     public Pizza(String name, Float price, Integer id){
         this.name=name;
         this.price=price;
@@ -28,11 +32,11 @@ public class Pizza {
         return name;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 }
