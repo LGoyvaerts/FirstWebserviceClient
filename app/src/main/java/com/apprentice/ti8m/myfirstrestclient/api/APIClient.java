@@ -1,4 +1,4 @@
-package com.apprentice.ti8m.myfirstrestclient;
+package com.apprentice.ti8m.myfirstrestclient.api;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIClient {
 
     private static Retrofit retrofit = null;
-    static Retrofit getClient(){
+    public static Retrofit getClient(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

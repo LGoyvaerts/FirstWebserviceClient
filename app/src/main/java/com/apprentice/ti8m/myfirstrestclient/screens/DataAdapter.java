@@ -1,4 +1,4 @@
-package com.apprentice.ti8m.myfirstrestclient;
+package com.apprentice.ti8m.myfirstrestclient.screens;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,20 +7,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.model.Pizza;
-import com.bumptech.glide.Glide;
+import com.apprentice.ti8m.myfirstrestclient.utils.GlideApp;
 import com.bumptech.glide.request.RequestOptions;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by gol on 02.10.17.
  */
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
-    private ArrayList<Pizza> pizzas;
+    private List<Pizza> pizzas;
 
-    public DataAdapter(ArrayList<Pizza> pizzas) {
+    public DataAdapter(List<Pizza> pizzas) {
         this.pizzas = pizzas;
     }
 
@@ -35,7 +37,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
 
         //viewHolder.pizza_image.setText(pizzas.get(i).getId().toString());
         viewHolder.pizza_name.setText(pizzas.get(i).getName());
-        String price = pizzas.get(i).getPrice().toString();
+        BigDecimal result;
+        result = round(pizzas.get(i).getPrice(), 2);
+        String price = "Price: "+result.toString();
         viewHolder.pizza_price.setText(price);
     }
 
@@ -60,5 +64,11 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
             pizza_price = view.findViewById(R.id.pizza_price);
 
         }
+    }
+
+    public static BigDecimal round(float d, int decimalPlace) {
+        BigDecimal bd = new BigDecimal(Float.toString(d));
+        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        return bd;
     }
 }

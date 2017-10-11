@@ -1,10 +1,13 @@
-package com.apprentice.ti8m.myfirstrestclient;
+package com.apprentice.ti8m.myfirstrestclient.screens;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
+import com.apprentice.ti8m.myfirstrestclient.api.APIInterface;
+import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.model.Pizza;
 
 import java.util.List;

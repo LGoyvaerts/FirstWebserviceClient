@@ -1,4 +1,4 @@
-package com.apprentice.ti8m.myfirstrestclient;
+package com.apprentice.ti8m.myfirstrestclient.utils;
 
 import com.bumptech.glide.module.AppGlideModule;
 

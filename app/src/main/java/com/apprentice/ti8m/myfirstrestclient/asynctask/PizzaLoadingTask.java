@@ -1,0 +1,55 @@
+package com.apprentice.ti8m.myfirstrestclient.asynctask;
+
+import android.os.AsyncTask;
+
+import com.apprentice.ti8m.myfirstrestclient.api.APIInterface;
+import com.apprentice.ti8m.myfirstrestclient.model.Pizza;
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+/**
+ * Created by gol on 03.10.17.
+ */
+
+public class PizzaLoadingTask extends AsyncTask<Void, Void, List<Pizza>> {
+
+    private TaskListener mListener;
+
+    public PizzaLoadingTask(TaskListener listener){
+        this.mListener=listener;
+    }
+
+    @Override
+    protected List<Pizza> doInBackground(Void... voids) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.10.36.64:8080/pizzashop/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        APIInterface request = retrofit.create(APIInterface.class);
+        Call<List<Pizza>> call = request.getPizzas();
+        try {
+            Response<List<Pizza>> jsonResponse = call.execute();
+            return jsonResponse.body();
+        } catch (IOException | NullPointerException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    protected void onPostExecute(List<Pizza> pizzas) {
+        mListener.onComplete(pizzas);
+
+    }
+
+    public interface TaskListener {
+        void onComplete(List<Pizza> pizzas);
+    }
+}

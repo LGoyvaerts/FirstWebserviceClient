@@ -1,6 +1,5 @@
-package com.apprentice.ti8m.myfirstrestclient;
+package com.apprentice.ti8m.myfirstrestclient.api;
 
-import com.apprentice.ti8m.myfirstrestclient.model.JSONResponse;
 import com.apprentice.ti8m.myfirstrestclient.model.Pizza;
 
 import java.util.List;
@@ -17,8 +16,6 @@ public interface APIInterface {
     @GET("api/rest/pizzas")
     Call<List<Pizza>> getPizzas();
 
-    @GET("api/rest/pizzas")
-    Call<JSONResponse> getJSON();
 
 
 }

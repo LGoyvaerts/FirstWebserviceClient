@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">MyFirstRESTClient</string>
+    <string name="app_name">Pizza Shop</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_signup">Sign Up</string>
+
+    <!-- Strings related to login -->
+    <string name="e_mail">E-Mail</string>
+    <string name="login_email_hint">E-Mail</string>
+    <string name="login_passwordHint">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="login_username_or_password_is_incorrect">Username or Password is incorrect.</string>
+
+    <!-- Strings related to signup -->
+    <string name="signup">Sign Up</string>
+    <string name="sign_up_first">SIGN UP</string>
+    <string name="signup_passwordHint_first">Password</string>
+    <string name="signup_passwordHint_second">Confirm Password</string>
+    <string name="signup_username_or_password_is_incorrect">Username or Password is incorrect.</string>
 </resources>
