@@ -6,4 +6,5 @@
     <color name="colorPizzaName">#000000</color>
     <color name="colorWrongUernamePassword">#bd0813</color>
     <color name="white">#FFFFFF</color>
+    <color name="roundImage">#FFCB0808</color>
 </resources>

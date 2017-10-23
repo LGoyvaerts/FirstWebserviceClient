@@ -50,11 +50,13 @@ public class SignUpActivity extends AppCompatActivity {
                 if (LoginValidator.isSignupValid(sharedPreferences, emailEditText.getText().toString(), passwordEditText.getText().toString(), passwordEditTextConfirm.getText().toString())) {
                     MainActivity.start(SignUpActivity.this);
                 }
-                if (!LoginValidator.isBothPasswordsValid(passwordEditText.getText().toString(), passwordEditTextConfirm.getText().toString())) {
+                if (!LoginValidator.isLoginPasswordValid(passwordEditText.getText().toString())) {
+                    passwordEditText.setError("Password is not valid.");
+                } else if (!LoginValidator.isBothPasswordsValid(passwordEditText.getText().toString(), passwordEditTextConfirm.getText().toString())) {
                     passwordEditTextConfirm.setError("Password not confirmed right.");
                 }
                 if (!LoginValidator.isLoginEmailValid(emailEditText.getText().toString())) {
-                    emailEditText.setError("Email not valid.");
+                    emailEditText.setError("Email is not valid.");
                 }
             }
         });
