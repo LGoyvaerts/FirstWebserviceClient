@@ -16,4 +16,5 @@
     <string name="signup_passwordHint_first">Password</string>
     <string name="signup_passwordHint_second">Confirm Password</string>
     <string name="signup_username_or_password_is_incorrect">Username or Password is incorrect.</string>
+    <string name="mail_icon_description">Mail Icon</string>
 </resources>

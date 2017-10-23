@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.apprentice.ti8m.myfirstrestclient.R;
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView emailTextView;
     EditText emailEditText;
     EditText passwordEditText;
+    RelativeLayout emailIconLayout;
     //TextView wrongCredetials;
     Button loginButton;
     Button signupButton;
@@ -49,9 +51,11 @@ public class LoginActivity extends AppCompatActivity {
         emailTextView = findViewById(R.id.login_email_textview);
         emailEditText = findViewById(R.id.login_email_edittext);
         passwordEditText = findViewById(R.id.login_password_edittext);
+        emailIconLayout = findViewById(R.id.login_email_icon_layout);
         //wrongCredetials = findViewById(R.id.wrong_credentials_textview);
         loginButton = findViewById(R.id.login_login_button);
         signupButton = findViewById(R.id.login_signup_button);
+        emailIconLayout.bringToFront();
     }
 
     private void loadData() throws Exception {
