@@ -6,14 +6,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.apprentice.ti8m.myfirstrestclient.R;
+import com.apprentice.ti8m.myfirstrestclient.model.User;
 import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
+
+import java.lang.ref.WeakReference;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -25,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     //TextView wrongCredetials;
     Button loginButton;
     Button signupButton;
-    SharedPreferences sharedPreferences;
+    private ValidatorCallback validatorCallback = new ValidatorCallback(this);
+    SharedPreferences prefs;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, LoginActivity.class);
@@ -38,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initViews();
-        sharedPreferences = getApplicationContext().getSharedPreferences("Users", 0);
         try {
             loadData();
         } catch (Exception e) {
@@ -63,9 +69,9 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (LoginValidator.isLoginValid(sharedPreferences, emailEditText.getText().toString(), passwordEditText.getText().toString())) {
-                    MainActivity.start(LoginActivity.this);
-                } else passwordEditText.setError("Email or Password is incorrect.");
+                LoginValidator.isLoginValid( emailEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        validatorCallback);
             }
         });
 
@@ -75,5 +81,38 @@ public class LoginActivity extends AppCompatActivity {
                 SignUpActivity.start(LoginActivity.this);
             }
         });
+    }
+
+    private class ValidatorCallback implements Callback<Void> {
+
+        private WeakReference<LoginActivity> loginActivityWeakReference;
+        public ValidatorCallback(LoginActivity loginActivity){
+            loginActivityWeakReference = new WeakReference<>(loginActivity);
+        }
+        @Override
+        public void onResponse(Call<Void> call, Response<Void> response) {
+            if (response.isSuccessful()) {
+                LoginActivity activity = loginActivityWeakReference.get();
+                if(activity == null) { return;}
+                prefs = getSharedPreferences("loginRecognizer", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("loggedIn", true);
+                editor.apply();
+                MainActivity.start(activity);
+            } else {
+                LoginActivity activity = loginActivityWeakReference.get();
+                if(activity == null) { return;}
+                activity.passwordEditText.setError("Email or Password is incorrect.");
+            }
+
+        }
+
+        @Override
+        public void onFailure(Call<Void> call, Throwable t) {
+            LoginActivity activity = loginActivityWeakReference.get();
+            if(activity == null) { return;}
+           //TODO error meldung für user
+        }
+
     }
 }

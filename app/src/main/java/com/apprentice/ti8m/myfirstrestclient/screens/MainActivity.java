@@ -2,6 +2,7 @@ package com.apprentice.ti8m.myfirstrestclient.screens;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -44,6 +45,19 @@ public class MainActivity extends AppCompatActivity {
                 DividerItemDecoration.VERTICAL));
         adapter = new DataAdapter(pizzas);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        SharedPreferences preferences = getSharedPreferences("loginRecognizer", MODE_PRIVATE);
+        if (preferences.contains("loggedIn")){
+            Intent i = new Intent(this, LoginActivity.class); // Your list's Intent
+            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
+            startActivity(i);
+        }else {
+            SignUpActivity.start(MainActivity.this);
+        }
     }
 
     public static void start(Context context) {

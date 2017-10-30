@@ -10,7 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.apprentice.ti8m.myfirstrestclient.R;
+import com.apprentice.ti8m.myfirstrestclient.model.User;
 import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
+
+import java.lang.ref.WeakReference;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -18,7 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText passwordEditText;
     EditText passwordEditTextConfirm;
     Button signupButton;
-    SharedPreferences sharedPreferences;
+    SharedPreferences prefs;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, SignUpActivity.class);
@@ -46,10 +53,10 @@ public class SignUpActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences = getSharedPreferences("Users", MODE_PRIVATE);
-                if (LoginValidator.isSignupValid(sharedPreferences, emailEditText.getText().toString(), passwordEditText.getText().toString(), passwordEditTextConfirm.getText().toString())) {
-                    MainActivity.start(SignUpActivity.this);
-                }
+                LoginValidator.isSignupValid(emailEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        passwordEditTextConfirm.getText().toString(),
+                        new ValidatorCallback(SignUpActivity.this));
                 if (!LoginValidator.isLoginPasswordValid(passwordEditText.getText().toString())) {
                     passwordEditText.setError("Password is not valid.");
                 } else if (!LoginValidator.isBothPasswordsValid(passwordEditText.getText().toString(), passwordEditTextConfirm.getText().toString())) {
@@ -60,5 +67,38 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private class ValidatorCallback implements Callback<Void> {
+
+        private WeakReference<SignUpActivity> signUpActivityWeakReference;
+        public ValidatorCallback(SignUpActivity loginActivity){
+            signUpActivityWeakReference = new WeakReference<>(loginActivity);
+        }
+        @Override
+        public void onResponse(Call<Void> call, Response<Void> response) {
+            if (response.isSuccessful()) {
+                SignUpActivity activity = signUpActivityWeakReference.get();
+                if(activity == null) { return;}
+                prefs = getSharedPreferences("loginRecognizer", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putBoolean("loggedIn", true);
+                editor.apply();
+                MainActivity.start(activity);
+            } else {
+                SignUpActivity activity = signUpActivityWeakReference.get();
+                if(activity == null) { return;}
+                activity.passwordEditText.setError("Email or Password is incorrect.");
+            }
+
+        }
+
+        @Override
+        public void onFailure(Call<Void> call, Throwable t) {
+            SignUpActivity activity = signUpActivityWeakReference.get();
+            if(activity == null) { return;}
+            //TODO error meldung für user
+        }
+
     }
 }

@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by gol on 26.09.17.
  */
 
+
 public class Pizza {
 
     @SerializedName("name")
