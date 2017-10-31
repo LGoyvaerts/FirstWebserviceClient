@@ -13,6 +13,7 @@ import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.asynctask.PizzaLoadingTask;
 import com.apprentice.ti8m.myfirstrestclient.model.Pizza;
 import com.apprentice.ti8m.myfirstrestclient.screens.login.LoginActivity;
+import com.apprentice.ti8m.myfirstrestclient.screens.signup.SignUpActivity;
 
 import java.util.List;
 

@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".screens.SignUpActivity"
+            android:name=".screens.signup.SignUpActivity"
             android:label="@string/title_activity_signup">
         </activity>
         <activity

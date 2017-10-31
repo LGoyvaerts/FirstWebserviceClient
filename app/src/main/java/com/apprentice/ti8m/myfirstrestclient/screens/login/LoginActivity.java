@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
+import com.apprentice.ti8m.myfirstrestclient.screens.MainActivity;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
@@ -38,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         setContentView(R.layout.activity_login);
 
         initViews();
-        loginPresenter = new LoginPresenterIml(this, new APIClient());
+        loginPresenter = new LoginPresenterImpl(this, new APIClient());
         try {
             loadData();
         } catch (Exception e) {

@@ -1,5 +1,7 @@
 package com.apprentice.ti8m.myfirstrestclient.screens.login;
 
+import android.view.View;
+
 /**
  * Created by gol on 30.10.17.
  */

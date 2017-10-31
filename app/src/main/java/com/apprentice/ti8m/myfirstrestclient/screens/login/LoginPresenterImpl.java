@@ -1,5 +1,7 @@
 package com.apprentice.ti8m.myfirstrestclient.screens.login;
 
+import android.view.View;
+
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
 import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
 
@@ -13,12 +15,12 @@ import retrofit2.Response;
  * Created by gol on 30.10.17.
  */
 
-public class LoginPresenterIml implements LoginPresenter {
+public class LoginPresenterImpl implements LoginPresenter {
 
     private LoginView loginView;
     private APIClient apiClient;
 
-    public LoginPresenterIml(LoginView loginView, APIClient apiClient) {
+    public LoginPresenterImpl(LoginView loginView, APIClient apiClient) {
         this.loginView = loginView;
         this.apiClient = apiClient;
     }
@@ -57,7 +59,8 @@ public class LoginPresenterIml implements LoginPresenter {
                 //  SharedPreferences.Editor editor = prefs.edit();
                 //  editor.putBoolean("loggedIn", true);
                 //  editor.apply();
-                //MainActivity.start(activity);
+                //  MainActivity.start((Context) activity);
+
             } else {
                 LoginPresenter activity = loginPresenterWeakReference.get();
                 if (activity == null) {
