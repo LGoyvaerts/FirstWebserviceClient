@@ -1,4 +1,4 @@
-package com.apprentice.ti8m.myfirstrestclient.screens;
+package com.apprentice.ti8m.myfirstrestclient.screens.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,17 +12,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.apprentice.ti8m.myfirstrestclient.R;
-import com.apprentice.ti8m.myfirstrestclient.model.User;
-import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
-
-import java.lang.ref.WeakReference;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements LoginView {
 
     TextView emailTextView;
     EditText emailEditText;
@@ -31,8 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     //TextView wrongCredetials;
     Button loginButton;
     Button signupButton;
-    private ValidatorCallback validatorCallback = new ValidatorCallback(this);
     SharedPreferences prefs;
+    LoginPresenter loginPresenter;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, LoginActivity.class);
@@ -45,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initViews();
+        loginPresenter = new LoginPresenterIml(this, new APIClient());
         try {
             loadData();
         } catch (Exception e) {
@@ -69,50 +63,21 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginValidator.isLoginValid( emailEditText.getText().toString(),
-                        passwordEditText.getText().toString(),
-                        validatorCallback);
+                loginPresenter.login(emailEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignUpActivity.start(LoginActivity.this);
+                loginPresenter.signUp();
             }
         });
     }
 
-    private class ValidatorCallback implements Callback<Void> {
-
-        private WeakReference<LoginActivity> loginActivityWeakReference;
-        public ValidatorCallback(LoginActivity loginActivity){
-            loginActivityWeakReference = new WeakReference<>(loginActivity);
-        }
-        @Override
-        public void onResponse(Call<Void> call, Response<Void> response) {
-            if (response.isSuccessful()) {
-                LoginActivity activity = loginActivityWeakReference.get();
-                if(activity == null) { return;}
-                prefs = getSharedPreferences("loginRecognizer", MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putBoolean("loggedIn", true);
-                editor.apply();
-                MainActivity.start(activity);
-            } else {
-                LoginActivity activity = loginActivityWeakReference.get();
-                if(activity == null) { return;}
-                activity.passwordEditText.setError("Email or Password is incorrect.");
-            }
-
-        }
-
-        @Override
-        public void onFailure(Call<Void> call, Throwable t) {
-            LoginActivity activity = loginActivityWeakReference.get();
-            if(activity == null) { return;}
-           //TODO error meldung für user
-        }
-
+    @Override
+    public void showInvalidPassword() {
+        passwordEditText.setError("Email or Password is incorrect.");
     }
+
 }

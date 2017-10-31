@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.asynctask.PizzaLoadingTask;
 import com.apprentice.ti8m.myfirstrestclient.model.Pizza;
+import com.apprentice.ti8m.myfirstrestclient.screens.login.LoginActivity;
 
 import java.util.List;
 
