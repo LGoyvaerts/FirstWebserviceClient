@@ -76,4 +76,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         MainActivity.start(signupButton.getContext());
     }
 
+    @Override
+    public void setSignedUp() {
+        prefs = getSharedPreferences("loginRecognizer", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("loggedIn", true);
+        editor.apply();
+    }
+
 }

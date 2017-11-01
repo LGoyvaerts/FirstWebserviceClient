@@ -62,6 +62,12 @@ public class SignUpPresenterImpl implements SignUpPresenter {
         signUpView.startMainActivity();
     }
 
+    @Override
+    public void onSetSignedUp() {
+        signUpView.setSignedUp();
+    }
+
+
     private static class ValidatorCallback implements Callback<Void> {
 
         private String email, password, confirmPassword;
@@ -86,6 +92,7 @@ public class SignUpPresenterImpl implements SignUpPresenter {
                 //  editor.putBoolean("loggedIn", true);
                 //  editor.apply();
                 // MainActivity.start((Context) presenter);
+                presenter.onSetSignedUp();
                 presenter.onStartMainActivity();
 
             } else {

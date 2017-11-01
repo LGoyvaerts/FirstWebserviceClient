@@ -10,4 +10,5 @@ public interface SignUpView {
     void showInvalidPassword();
     void showInvalidConfirmPassword();
     void startMainActivity();
+    void setSignedUp();
 }
