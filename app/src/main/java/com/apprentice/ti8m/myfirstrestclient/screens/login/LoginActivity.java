@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
 import com.apprentice.ti8m.myfirstrestclient.screens.MainActivity;
+import com.apprentice.ti8m.myfirstrestclient.screens.signup.SignUpActivity;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
@@ -32,6 +33,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         Intent starter = new Intent(context, LoginActivity.class);
         context.startActivity(starter);
     }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginPresenter.signUp();
+                loginPresenter.goToSignUp();
             }
         });
     }
@@ -81,4 +85,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         passwordEditText.setError("Email or Password is incorrect.");
     }
 
+    @Override
+    public void startMainActivity() {
+        MainActivity.start(loginButton.getContext());
+    }
+
+    @Override
+    public void startSignUpActivity() {
+        SignUpActivity.start(signupButton.getContext());
+    }
 }

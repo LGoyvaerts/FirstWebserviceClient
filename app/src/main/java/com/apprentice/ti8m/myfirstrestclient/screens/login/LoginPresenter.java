@@ -9,6 +9,8 @@ import android.view.View;
 public interface LoginPresenter {
 
     void login(String email, String password);
-    void signUp();
+    void goToSignUp();
     void onInvalidPassword();
+    void onStartActivityMain();
+    void onStartSignUpActivity();
 }

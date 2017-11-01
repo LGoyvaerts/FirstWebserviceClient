@@ -9,4 +9,5 @@ public interface SignUpView {
     void showInvalidEmail();
     void showInvalidPassword();
     void showInvalidConfirmPassword();
+    void startMainActivity();
 }

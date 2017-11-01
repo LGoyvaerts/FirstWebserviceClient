@@ -1,8 +1,9 @@
 package com.apprentice.ti8m.myfirstrestclient.screens.login;
 
-import android.view.View;
+import android.content.Intent;
 
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
+import com.apprentice.ti8m.myfirstrestclient.screens.MainActivity;
 import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
 
 import java.lang.ref.WeakReference;
@@ -17,6 +18,7 @@ import retrofit2.Response;
 
 public class LoginPresenterImpl implements LoginPresenter {
 
+    public MainActivity mainActivity;
     private LoginView loginView;
     private APIClient apiClient;
 
@@ -31,13 +33,23 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
-    public void signUp() {
-
+    public void goToSignUp() {
+        onStartSignUpActivity();
     }
 
     @Override
     public void onInvalidPassword() {
         loginView.showInvalidPassword();
+    }
+
+    @Override
+    public void onStartActivityMain() {
+        loginView.startMainActivity();
+    }
+
+    @Override
+    public void onStartSignUpActivity() {
+        loginView.startSignUpActivity();
     }
 
     private static class ValidatorCallback implements Callback<Void> {
@@ -59,7 +71,8 @@ public class LoginPresenterImpl implements LoginPresenter {
                 //  SharedPreferences.Editor editor = prefs.edit();
                 //  editor.putBoolean("loggedIn", true);
                 //  editor.apply();
-                //  MainActivity.start((Context) activity);
+                // MainActivity.start(LoginMainActivityFactory.getLoginActivityContext());
+                activity.onStartActivityMain();
 
             } else {
                 LoginPresenter activity = loginPresenterWeakReference.get();
@@ -84,4 +97,5 @@ public class LoginPresenterImpl implements LoginPresenter {
         }
 
     }
+
 }

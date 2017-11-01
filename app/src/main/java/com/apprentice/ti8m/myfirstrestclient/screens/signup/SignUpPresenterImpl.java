@@ -45,6 +45,11 @@ public class SignUpPresenterImpl implements SignUpPresenter {
         signUpView.showInvalidConfirmPassword();
     }
 
+    @Override
+    public void onStartMainActivity() {
+        signUpView.startMainActivity();
+    }
+
     private static class ValidatorCallback implements Callback<Void> {
 
         private String email, password, confirmPassword;
@@ -52,9 +57,9 @@ public class SignUpPresenterImpl implements SignUpPresenter {
 
         public ValidatorCallback(SignUpPresenter signUpPresenter, String email, String password, String confirmPassword) {
             signUpPresenterWeakReference = new WeakReference<>(signUpPresenter);
-            this.email=email;
-            this.password=password;
-            this.confirmPassword=confirmPassword;
+            this.email = email;
+            this.password = password;
+            this.confirmPassword = confirmPassword;
         }
 
         @Override
@@ -69,6 +74,8 @@ public class SignUpPresenterImpl implements SignUpPresenter {
                 //  editor.putBoolean("loggedIn", true);
                 //  editor.apply();
                 // MainActivity.start((Context) presenter);
+                presenter.onStartMainActivity();
+
             } else {
                 SignUpPresenter signUpPresenter = signUpPresenterWeakReference.get();
                 if (signUpPresenter == null) {

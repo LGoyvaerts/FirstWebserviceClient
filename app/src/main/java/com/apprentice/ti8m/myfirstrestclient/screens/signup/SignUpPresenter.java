@@ -12,4 +12,5 @@ public interface SignUpPresenter {
     void onInvalidEmail();
     void onInvalidPassword();
     void onInvalidConfirmPassword();
+    void onStartMainActivity();
 }

@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
+import com.apprentice.ti8m.myfirstrestclient.screens.MainActivity;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpView {
 
@@ -68,6 +69,11 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     @Override
     public void showInvalidConfirmPassword() {
         passwordEditTextConfirm.setError("Password not confirmed right.");
+    }
+
+    @Override
+    public void startMainActivity() {
+        MainActivity.start(signupButton.getContext());
     }
 
 }
