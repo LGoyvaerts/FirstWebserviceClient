@@ -63,7 +63,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
 
     @Override
     public void showInvalidPassword() {
-        passwordEditText.setError("Email or Password.");
+        passwordEditText.setError("Password not valid.");
     }
 
     @Override

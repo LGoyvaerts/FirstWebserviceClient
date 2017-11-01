@@ -27,7 +27,19 @@ public class SignUpPresenterImpl implements SignUpPresenter {
 
     @Override
     public void signUp(String email, String password, String confirmPassword) {
-        LoginValidator.isSignupValid(email, password, confirmPassword, new ValidatorCallback(this, email, password, confirmPassword));
+        boolean temp = false;
+        if (!LoginValidator.isLoginEmailValid(email)) {
+            onInvalidEmail();
+            temp = true;
+        }
+        if (!LoginValidator.isBothPasswordsValid(password, confirmPassword)) {
+            onInvalidPassword();
+            onInvalidConfirmPassword();
+            temp = true;
+        }
+        if (!temp) {
+            LoginValidator.isSignupValid(email, password, confirmPassword, new ValidatorCallback(this, email, password, confirmPassword));
+        }
     }
 
     @Override
