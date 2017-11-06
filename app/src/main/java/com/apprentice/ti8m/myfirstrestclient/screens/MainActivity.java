@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, LoginActivity.class); // Your list's Intent
             i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
             startActivity(i);
-        }else {
-            SignUpActivity.start(MainActivity.this);
         }
     }
 
