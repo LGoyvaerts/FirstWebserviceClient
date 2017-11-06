@@ -87,11 +87,6 @@ public class SignUpPresenterImpl implements SignUpPresenter {
                 if (presenter == null) {
                     return;
                 }
-                //  prefs = getSharedPreferences("loginRecognizer", MODE_PRIVATE);
-                //  SharedPreferences.Editor editor = prefs.edit();
-                //  editor.putBoolean("loggedIn", true);
-                //  editor.apply();
-                // MainActivity.start((Context) presenter);
                 presenter.onSetSignedUp();
                 presenter.onStartMainActivity();
 

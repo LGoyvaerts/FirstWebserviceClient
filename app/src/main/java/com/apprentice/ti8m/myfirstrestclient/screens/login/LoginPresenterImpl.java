@@ -1,9 +1,6 @@
 package com.apprentice.ti8m.myfirstrestclient.screens.login;
 
-import android.content.Intent;
-
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
-import com.apprentice.ti8m.myfirstrestclient.screens.MainActivity;
 import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
 
 import java.lang.ref.WeakReference;
@@ -18,7 +15,6 @@ import retrofit2.Response;
 
 public class LoginPresenterImpl implements LoginPresenter {
 
-    public MainActivity mainActivity;
     private LoginView loginView;
     private APIClient apiClient;
 
@@ -67,11 +63,6 @@ public class LoginPresenterImpl implements LoginPresenter {
                 if (activity == null) {
                     return;
                 }
-                //  prefs = getSharedPreferences("loginRecognizer", MODE_PRIVATE);
-                //  SharedPreferences.Editor editor = prefs.edit();
-                //  editor.putBoolean("loggedIn", true);
-                //  editor.apply();
-                // MainActivity.start(LoginMainActivityFactory.getLoginActivityContext());
                 activity.onStartActivityMain();
 
             } else {
@@ -80,9 +71,6 @@ public class LoginPresenterImpl implements LoginPresenter {
                     return;
                 }
                 activity.onInvalidPassword();
-                //LoginActivity activity = loginActivityWeakReference.get();
-                //if(activity == null) { return;}
-                //activity.passwordEditText.setError("Email or Password is incorrect.");
             }
 
         }
