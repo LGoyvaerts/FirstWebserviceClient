@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by gol on 26.09.17.
+ * Don't copy my Stuff!
  */
 
 public class APIClient {

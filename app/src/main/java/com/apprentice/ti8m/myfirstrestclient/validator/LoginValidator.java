@@ -22,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by gol on 10.10.17.
+ * Don't copy my Stuff!
  */
 
 public class LoginValidator {

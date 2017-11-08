@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Created by gol on 02.10.17.
+ * Don't copy my Stuff!
  */
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{

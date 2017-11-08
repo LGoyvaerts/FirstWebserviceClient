@@ -17,4 +17,7 @@
     <string name="signup_passwordHint_second">Confirm Password</string>
     <string name="signup_username_or_password_is_incorrect">Username or Password is incorrect.</string>
     <string name="mail_icon_description">Mail Icon</string>
+    <string name="show_password_pattern">Pattern: A + a + 1 + %</string>
+    <string name="lock_for_lockicon">Lock for LockIcon</string>
+    <string name="email_for_emailicon">EMail for EMailIcon</string>
 </resources>

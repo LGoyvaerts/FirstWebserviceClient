@@ -11,4 +11,5 @@ public interface SignUpView {
     void showInvalidConfirmPassword();
     void startMainActivity();
     void setSignedUp();
+    void handleFailure();
 }

@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
 import com.apprentice.ti8m.myfirstrestclient.screens.MainActivity;
+import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpView {
 
@@ -21,6 +23,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     Button signupButton;
     SharedPreferences prefs;
     SignUpPresenter signUpPresenter;
+    TextView showPasswordPattern;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, SignUpActivity.class);
@@ -42,6 +45,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         passwordEditText = findViewById(R.id.signup_password_edittext_first);
         passwordEditTextConfirm = findViewById(R.id.signup_password_edittext_second);
         signupButton = findViewById(R.id.signup_signup_button);
+        showPasswordPattern = findViewById(R.id.signup_show_passwordpattern);
 
     }
 
@@ -82,6 +86,19 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("loggedIn", true);
         editor.apply();
+    }
+
+    @Override
+    public void handleFailure() {
+        if (!LoginValidator.isLoginPasswordValid(passwordEditText.getText().toString())) {
+            showInvalidPassword();
+            showPasswordPattern.setVisibility(View.VISIBLE);
+        } else if (!LoginValidator.isBothPasswordsValid(passwordEditText.getText().toString(), passwordEditTextConfirm.getText().toString())) {
+            showInvalidConfirmPassword();
+        }
+        if (!LoginValidator.isLoginEmailValid(emailEditText.getText().toString())) {
+            showInvalidEmail();
+        }
     }
 
 }

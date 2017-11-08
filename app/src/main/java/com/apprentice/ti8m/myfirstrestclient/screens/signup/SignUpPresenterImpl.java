@@ -11,13 +11,13 @@ import retrofit2.Response;
 
 /**
  * Created by gol on 31.10.17.
+ * Don't copy my Stuff!
  */
 
 public class SignUpPresenterImpl implements SignUpPresenter {
 
     private SignUpView signUpView;
     private APIClient apiClient;
-    private String email, password, confirmPassword;
 
     public SignUpPresenterImpl(SignUpView signUpView, APIClient apiClient) {
         this.signUpView = signUpView;
@@ -38,7 +38,7 @@ public class SignUpPresenterImpl implements SignUpPresenter {
             temp = true;
         }
         if (!temp) {
-            LoginValidator.isSignupValid(email, password, confirmPassword, new ValidatorCallback(this, email, password, confirmPassword));
+            LoginValidator.isSignupValid(email, password, confirmPassword, new ValidatorCallback(this));
         }
     }
 
@@ -67,13 +67,18 @@ public class SignUpPresenterImpl implements SignUpPresenter {
         signUpView.setSignedUp();
     }
 
+    @Override
+    public void onHandleFailure() {
+        signUpView.handleFailure();
+    }
+
 
     private static class ValidatorCallback implements Callback<Void> {
 
         private String email, password, confirmPassword;
         private WeakReference<SignUpPresenter> signUpPresenterWeakReference;
 
-        public ValidatorCallback(SignUpPresenter signUpPresenter, String email, String password, String confirmPassword) {
+        public ValidatorCallback(SignUpPresenter signUpPresenter) {
             signUpPresenterWeakReference = new WeakReference<>(signUpPresenter);
             this.email = email;
             this.password = password;
@@ -102,18 +107,11 @@ public class SignUpPresenterImpl implements SignUpPresenter {
 
         @Override
         public void onFailure(Call<Void> call, Throwable t) {
-            SignUpPresenter activity = signUpPresenterWeakReference.get();
-            if (activity == null) {
+            SignUpPresenter signUpPresenter = signUpPresenterWeakReference.get();
+            if (signUpPresenter == null) {
                 return;
             }
-            if (!LoginValidator.isLoginPasswordValid(password)) {
-                activity.onInvalidPassword();
-            } else if (!LoginValidator.isBothPasswordsValid(password, confirmPassword)) {
-                activity.onInvalidConfirmPassword();
-            }
-            if (!LoginValidator.isLoginEmailValid(email)) {
-                activity.onInvalidEmail();
-            }
+            signUpPresenter.onHandleFailure();
         }
 
     }
