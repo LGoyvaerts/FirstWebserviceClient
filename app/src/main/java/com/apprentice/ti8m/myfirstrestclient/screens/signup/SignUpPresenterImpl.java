@@ -75,14 +75,10 @@ public class SignUpPresenterImpl implements SignUpPresenter {
 
     private static class ValidatorCallback implements Callback<Void> {
 
-        private String email, password, confirmPassword;
         private WeakReference<SignUpPresenter> signUpPresenterWeakReference;
 
-        public ValidatorCallback(SignUpPresenter signUpPresenter) {
+        ValidatorCallback(SignUpPresenter signUpPresenter) {
             signUpPresenterWeakReference = new WeakReference<>(signUpPresenter);
-            this.email = email;
-            this.password = password;
-            this.confirmPassword = confirmPassword;
         }
 
         @Override

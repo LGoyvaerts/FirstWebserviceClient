@@ -20,4 +20,5 @@
     <string name="show_password_pattern">Pattern: A + a + 1 + %</string>
     <string name="lock_for_lockicon">Lock for LockIcon</string>
     <string name="email_for_emailicon">EMail for EMailIcon</string>
+    <string name="password_hint_login">Password</string>
 </resources>
