@@ -17,23 +17,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
-ext.libraries = [
-        jaxb  : [
-                "com.fasterxml.jackson.core:jackson-databind:2.8.5",
-                "com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.8.5"
-        ],
-        jaxrs : [
-                "javax.ws.rs:javax.ws.rs-api:2.0.1",
-                "org.glassfish:javax.json:1.1",
-                "org.glassfish.jersey.containers:jersey-container-servlet:2.25",
-                "org.glassfish.jersey.media:jersey-media-json-jackson:2.25"
-        ],
-        jersey: [
-                'org.glassfish.jersey.core:2.6'
-        ]
-]
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -61,5 +51,6 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     testCompile "com.google.truth:truth:0.36"
+    testCompile "org.mockito:mockito-core:2.12.0"
     annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
 }

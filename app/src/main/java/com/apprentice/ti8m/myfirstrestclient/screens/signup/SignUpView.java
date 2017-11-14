@@ -12,4 +12,5 @@ public interface SignUpView {
     void startMainActivity();
     void setSignedUp();
     void handleFailure();
+    void userAlreadyExists();
 }

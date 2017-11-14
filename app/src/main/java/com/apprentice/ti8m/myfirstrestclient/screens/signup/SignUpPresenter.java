@@ -15,4 +15,5 @@ public interface SignUpPresenter {
     void onStartMainActivity();
     void onSetSignedUp();
     void onHandleFailure();
+    void onUserAlreadyExists();
 }

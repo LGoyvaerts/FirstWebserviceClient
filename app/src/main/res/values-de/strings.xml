@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Pizza Shop</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_signup">Registrieren</string>
+
+    <!-- Strings related to login -->
+    <string name="e_mail">E-Mail</string>
+    <string name="login_email_hint">E-Mail</string>
+    <string name="login_passwordHint">Passwort</string>
+    <string name="login">LOGIN</string>
+    <string name="login_username_or_password_is_incorrect">Benutzername oder Passwort ist inkorrekt.</string>
+
+    <!-- Strings related to signup -->
+    <string name="signup">Registrieren</string>
+    <string name="sign_up_first">REGISTRIEREN</string>
+    <string name="signup_user_already_exists">Benutzer existiert bereits.</string>
+    <string name="signup_passwordHint_first">Passwort</string>
+    <string name="signup_passwordHint_second">Passwort wiederholen</string>
+    <string name="signup_username_or_password_is_incorrect">Benutzername oder Passwort inkorrekt.</string>
+    <string name="mail_icon_description">Mail Icon</string>
+    <string name="show_password_pattern">Muster: A + a + 1 + %</string>
+    <string name="lock_for_lockicon">Schloss für LockIcon</string>
+    <string name="email_for_emailicon">EMail für EMailIcon</string>
+    <string name="password_hint_login">Passwort</string>
+    <string name="login_incorrect_credentials">Email oder Passwort ist inkorrekt.</string>
+    <string name="signup_invalid_email">Email ist nicht valid.</string>
+    <string name="signup_invalid_password">Passwort ist nicht valid.</string>
+    <string name="signup_invalid_confirm_password">Passwort nicht richtig wiederholt.</string>
+</resources>

@@ -31,7 +31,7 @@ public class UsersLoadingTask extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... voids) {
         final Boolean[] isValid = new Boolean[1];
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.10.36.64:8080/pizzashop/")
+                .baseUrl(APIInterface.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         final APIInterface request = retrofit.create(APIInterface.class);

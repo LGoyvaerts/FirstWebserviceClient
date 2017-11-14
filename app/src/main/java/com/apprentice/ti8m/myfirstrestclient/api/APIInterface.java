@@ -17,6 +17,8 @@ import retrofit2.http.POST;
 
 public interface APIInterface {
 
+    String baseUrl = "http://10.10.36.64:8080/pizzashop/";
+
     @GET("api/rest/pizzas")
     Call<List<Pizza>> getPizzas();
 

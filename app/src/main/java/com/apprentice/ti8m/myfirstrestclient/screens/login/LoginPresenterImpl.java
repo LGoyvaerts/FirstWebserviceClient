@@ -1,6 +1,7 @@
 package com.apprentice.ti8m.myfirstrestclient.screens.login;
 
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
+import com.apprentice.ti8m.myfirstrestclient.model.User;
 import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
 
 import java.lang.ref.WeakReference;
@@ -17,15 +18,19 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     private LoginView loginView;
     private APIClient apiClient;
+    private ValidatorCallback validatorCallback;
 
     public LoginPresenterImpl(LoginView loginView, APIClient apiClient) {
         this.loginView = loginView;
         this.apiClient = apiClient;
+        this.validatorCallback = new ValidatorCallback(this);
     }
 
     @Override
     public void login(String email, String password) {
-        LoginValidator.isLoginValid(email, password, new ValidatorCallback(this));
+        String encryptedPassword = LoginValidator.encryptStringToSHA256(password);
+        apiClient.getUser(new User(email, encryptedPassword))
+                 .enqueue(validatorCallback);
     }
 
     @Override
@@ -59,11 +64,11 @@ public class LoginPresenterImpl implements LoginPresenter {
         @Override
         public void onResponse(Call<Void> call, Response<Void> response) {
             if (response.isSuccessful()) {
-                LoginPresenter activity = loginPresenterWeakReference.get();
-                if (activity == null) {
+                LoginPresenter loginPresenter = loginPresenterWeakReference.get();
+                if (loginPresenter == null) {
                     return;
                 }
-                activity.onStartActivityMain();
+                loginPresenter.onStartActivityMain();
 
             } else {
                 LoginPresenter activity = loginPresenterWeakReference.get();

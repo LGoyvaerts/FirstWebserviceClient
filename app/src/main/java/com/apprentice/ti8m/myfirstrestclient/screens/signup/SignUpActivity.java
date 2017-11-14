@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,9 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
     SharedPreferences prefs;
     SignUpPresenter signUpPresenter;
     TextView showPasswordPattern;
+    TextInputLayout emailEditTextLayout;
+    TextInputLayout passwordEditTextLayout;
+    TextInputLayout passwordConfirmtTextLayout;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, SignUpActivity.class);
@@ -36,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         setContentView(R.layout.activity_sign_up);
 
         initViews();
-        signUpPresenter = new SignUpPresenterImpl(this, new APIClient());
+        signUpPresenter = new SignUpPresenterImpl(this, APIClient.getInstance());
         loadData();
     }
 
@@ -46,6 +50,9 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         passwordEditTextConfirm = findViewById(R.id.signup_password_edittext_second);
         signupButton = findViewById(R.id.signup_signup_button);
         showPasswordPattern = findViewById(R.id.signup_show_passwordpattern);
+        emailEditTextLayout = findViewById(R.id.email_input_layout_signup);
+        passwordEditTextLayout = findViewById(R.id.password_input_layout_signup);
+        passwordConfirmtTextLayout = findViewById(R.id.password_confirm_input_layout_signup);
 
     }
 
@@ -53,6 +60,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setTextLayoutErrorsDisabled();
                 signUpPresenter.signUp(emailEditText.getText().toString(),
                         passwordEditText.getText().toString(),
                         passwordEditTextConfirm.getText().toString());
@@ -62,17 +70,20 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
 
     @Override
     public void showInvalidEmail() {
-        emailEditText.setError("Email is not valid.");
+        emailEditTextLayout.setErrorEnabled(true);
+        emailEditTextLayout.setError(getString(R.string.signup_invalid_email));
     }
 
     @Override
     public void showInvalidPassword() {
-        passwordEditText.setError("Password not valid.");
+        passwordEditTextLayout.setErrorEnabled(true);
+        passwordEditTextLayout.setError(getString(R.string.signup_invalid_password));
     }
 
     @Override
     public void showInvalidConfirmPassword() {
-        passwordEditTextConfirm.setError("Password not confirmed right.");
+        passwordConfirmtTextLayout.setErrorEnabled(true);
+        passwordConfirmtTextLayout.setError(getString(R.string.signup_invalid_confirm_password));
     }
 
     @Override
@@ -90,15 +101,26 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView {
 
     @Override
     public void handleFailure() {
-        if (!LoginValidator.isLoginPasswordValid(passwordEditText.getText().toString())) {
+        if (!LoginValidator.isLoginEmailValid(emailEditText.getText().toString())) {
+            showInvalidEmail();
+        } else if (!LoginValidator.isLoginPasswordValid(passwordEditText.getText().toString())) {
             showInvalidPassword();
             showPasswordPattern.setVisibility(View.VISIBLE);
         } else if (!LoginValidator.isBothPasswordsValid(passwordEditText.getText().toString(), passwordEditTextConfirm.getText().toString())) {
             showInvalidConfirmPassword();
         }
-        if (!LoginValidator.isLoginEmailValid(emailEditText.getText().toString())) {
-            showInvalidEmail();
-        }
+    }
+
+    @Override
+    public void userAlreadyExists() {
+        emailEditTextLayout.setErrorEnabled(true);
+        emailEditTextLayout.setError(getString(R.string.signup_user_already_exists));
+    }
+
+    private void setTextLayoutErrorsDisabled() {
+        emailEditTextLayout.setErrorEnabled(false);
+        passwordEditTextLayout.setErrorEnabled(false);
+        passwordConfirmtTextLayout.setErrorEnabled(false);
     }
 
 }

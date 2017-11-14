@@ -12,4 +12,5 @@ public interface LoginView {
 
     void startSignUpActivity();
 
+
 }

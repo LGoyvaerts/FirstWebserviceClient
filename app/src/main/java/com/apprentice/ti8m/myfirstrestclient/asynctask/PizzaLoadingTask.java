@@ -29,7 +29,7 @@ public class PizzaLoadingTask extends AsyncTask<Void, Void, List<Pizza>> {
     @Override
     protected List<Pizza> doInBackground(Void... voids) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.10.36.64:8080/pizzashop/")
+                .baseUrl(APIInterface.baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         APIInterface request = retrofit.create(APIInterface.class);

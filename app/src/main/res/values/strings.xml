@@ -13,6 +13,7 @@
     <!-- Strings related to signup -->
     <string name="signup">Sign Up</string>
     <string name="sign_up_first">SIGN UP</string>
+    <string name="signup_user_already_exists">User already exists.</string>
     <string name="signup_passwordHint_first">Password</string>
     <string name="signup_passwordHint_second">Confirm Password</string>
     <string name="signup_username_or_password_is_incorrect">Username or Password is incorrect.</string>
@@ -21,4 +22,8 @@
     <string name="lock_for_lockicon">Lock for LockIcon</string>
     <string name="email_for_emailicon">EMail for EMailIcon</string>
     <string name="password_hint_login">Password</string>
+    <string name="login_incorrect_credentials">Email or Password is incorrect.</string>
+    <string name="signup_invalid_email">Email is not valid.</string>
+    <string name="signup_invalid_password">Password not valid.</string>
+    <string name="signup_invalid_confirm_password">Password not confirmed right.</string>
 </resources>

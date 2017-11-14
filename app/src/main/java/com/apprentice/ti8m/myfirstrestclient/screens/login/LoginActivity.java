@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     Button signupButton;
     SharedPreferences prefs;
     LoginPresenter loginPresenter;
+    TextInputLayout emailEditTextLayout;
+    TextInputLayout passwordEditTextLayout;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, LoginActivity.class);
@@ -43,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         setContentView(R.layout.activity_login);
 
         initViews();
-        loginPresenter = new LoginPresenterImpl(this, new APIClient());
+        loginPresenter = new LoginPresenterImpl(this, APIClient.getInstance());
         try {
             loadData();
         } catch (Exception e) {
@@ -60,6 +63,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         //wrongCredetials = findViewById(R.id.wrong_credentials_textview);
         loginButton = findViewById(R.id.login_login_button);
         signupButton = findViewById(R.id.login_signup_button);
+        emailEditTextLayout = findViewById(R.id.email_input_layout_login);
+        passwordEditTextLayout = findViewById(R.id.password_input_layout_login);
         emailIconLayout.bringToFront();
     }
 
@@ -82,7 +87,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void showInvalidPassword() {
-        passwordEditText.setError("Email or Password is incorrect.");
+        passwordEditTextLayout.setErrorEnabled(true);
+        passwordEditTextLayout.setError(getString(R.string.login_incorrect_credentials));
     }
 
     @Override
