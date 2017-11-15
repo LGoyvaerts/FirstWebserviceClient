@@ -2,7 +2,6 @@ package com.apprentice.ti8m.myfirstrestclient.screens.signup;
 
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
 import com.apprentice.ti8m.myfirstrestclient.model.User;
-import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
 
 import org.junit.After;
 import org.junit.Before;
@@ -14,7 +13,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.IOException;
 
-import dalvik.annotation.TestTarget;
 import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;

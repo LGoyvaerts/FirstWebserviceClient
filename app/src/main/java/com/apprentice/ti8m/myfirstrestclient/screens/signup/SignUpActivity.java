@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
 import com.apprentice.ti8m.myfirstrestclient.screens.MainActivity;
-import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
+import com.apprentice.ti8m.myfirstrestclient.utils.validator.LoginValidator;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpView {
 

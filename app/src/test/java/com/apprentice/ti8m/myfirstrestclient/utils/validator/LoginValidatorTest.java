@@ -1,4 +1,4 @@
-package com.apprentice.ti8m.myfirstrestclient.validator;
+package com.apprentice.ti8m.myfirstrestclient.utils.validator;
 
 import android.content.SharedPreferences;
 
@@ -11,16 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
 
 import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.PasswordCallback;
-
-import okhttp3.Request;
-import okhttp3.Response;
 
 import static com.google.common.truth.Truth.assertThat;
 

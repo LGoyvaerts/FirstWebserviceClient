@@ -18,15 +18,25 @@ public class Pizza {
     @SerializedName("id")
     private Integer id;
 
+    @SerializedName("imagepath")
+    private String imagepath;
 
-    public Pizza(String name, Float price){
-       this(name, price, null);
+
+    public Pizza(String name, Float price, String imagepath) {
+        this.name = name;
+        this.price = price;
+
+        this.imagepath = imagepath;
     }
 
-    public Pizza(String name, Float price, Integer id){
-        this.name=name;
-        this.price=price;
-        this.id=id;
+    public Pizza(String name, Float price, Integer id) {
+        this.name = name;
+        this.price = price;
+        this.id = id;
+    }
+
+    public String getImagepath() {
+        return imagepath;
     }
 
     public String getName() {

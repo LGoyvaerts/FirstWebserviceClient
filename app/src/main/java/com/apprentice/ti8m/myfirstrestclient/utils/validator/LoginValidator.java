@@ -1,18 +1,8 @@
-package com.apprentice.ti8m.myfirstrestclient.validator;
-
-import com.apprentice.ti8m.myfirstrestclient.api.APIInterface;
-import com.apprentice.ti8m.myfirstrestclient.model.User;
+package com.apprentice.ti8m.myfirstrestclient.utils.validator;
 
 import java.security.MessageDigest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**

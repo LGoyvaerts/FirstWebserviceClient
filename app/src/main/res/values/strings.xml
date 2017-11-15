@@ -26,4 +26,5 @@
     <string name="signup_invalid_email">Email is not valid.</string>
     <string name="signup_invalid_password">Password not valid.</string>
     <string name="signup_invalid_confirm_password">Password not confirmed right.</string>
+    <string name="pizza_list_empty">Pizza List Empty</string>
 </resources>

@@ -2,7 +2,7 @@ package com.apprentice.ti8m.myfirstrestclient.screens.login;
 
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
 import com.apprentice.ti8m.myfirstrestclient.model.User;
-import com.apprentice.ti8m.myfirstrestclient.validator.LoginValidator;
+import com.apprentice.ti8m.myfirstrestclient.utils.validator.LoginValidator;
 
 import java.lang.ref.WeakReference;
 
