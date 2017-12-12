@@ -20,33 +20,33 @@ import java.util.List;
  * Don't copy my Stuff!
  */
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
+public class PizzaDataAdapter extends RecyclerView.Adapter<PizzaDataAdapter.ViewHolder> {
     private List<Pizza> pizzas;
 
-    public DataAdapter(List<Pizza> pizzas) {
+    PizzaDataAdapter(List<Pizza> pizzas) {
         this.pizzas = pizzas;
     }
 
-    public static BigDecimal round(float d, int decimalPlace) {
+    private static BigDecimal round(float d) {
         BigDecimal bd = new BigDecimal(Float.toString(d));
-        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
         return bd;
     }
 
     @Override
-    public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public PizzaDataAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_row, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(DataAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(PizzaDataAdapter.ViewHolder viewHolder, int i) {
 
         //viewHolder.pizza_image.setText(pizzas.get(i).getId().toString());
-        viewHolder.pizza_imagepath = pizzas.get(i).getImagepath();
         viewHolder.pizza_name.setText(pizzas.get(i).getName());
         BigDecimal result;
-        result = round(pizzas.get(i).getPrice(), 2);
+        result = round(pizzas.get(i).getPrice());
+        result = round(pizzas.get(i).getPrice());
         String price = "Price: " + result.toString();
         viewHolder.pizza_price.setText(price);
 
@@ -62,19 +62,17 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         return pizzas.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView pizza_image;
         private TextView pizza_name, pizza_price;
-        private String pizza_imagepath;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
 
-            pizza_image = view.findViewById(R.id.imageView);
+            pizza_image = view.findViewById(R.id.product_image);
 
-            pizza_name = view.findViewById(R.id.pizza_name);
-            pizza_price = view.findViewById(R.id.pizza_price);
-
+            pizza_name = view.findViewById(R.id.product_name);
+            pizza_price = view.findViewById(R.id.product_price);
         }
     }
 }

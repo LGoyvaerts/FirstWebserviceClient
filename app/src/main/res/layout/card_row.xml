@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/product_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:adjustViewBounds="true"
@@ -19,7 +19,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/pizza_name"
+        android:id="@+id/product_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -29,17 +29,17 @@
         android:textSize="16sp"
         android:textColor="@color/colorPizzaName"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintLeft_toRightOf="@+id/imageView"
+        app:layout_constraintLeft_toRightOf="@+id/product_image"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/product_image" />
 
     <TextView
-        android:id="@+id/pizza_price"
+        android:id="@+id/product_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintLeft_toRightOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/product_image"
+        app:layout_constraintLeft_toRightOf="@+id/product_image"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:fontFamily="sans-serif"

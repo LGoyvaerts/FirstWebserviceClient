@@ -1,5 +1,6 @@
 package com.apprentice.ti8m.myfirstrestclient.api;
 
+import com.apprentice.ti8m.myfirstrestclient.model.Drink;
 import com.apprentice.ti8m.myfirstrestclient.model.Pizza;
 import com.apprentice.ti8m.myfirstrestclient.model.User;
 
@@ -16,11 +17,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Don't copy my Stuff!
  */
 
-public class APIClient implements APIInterface{
+public class APIClient implements APIInterface {
 
     private static APIClient INSTANCE = null;
     private APIInterface client;
-    private APIClient(){
+
+    private APIClient() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         OkHttpClient okHttpClient = new OkHttpClient
                 .Builder()
@@ -38,8 +40,8 @@ public class APIClient implements APIInterface{
         client = retrofit.create(APIInterface.class);
     }
 
-    public static synchronized APIClient getInstance(){
-        if(INSTANCE == null) {
+    public static synchronized APIClient getInstance() {
+        if (INSTANCE == null) {
             INSTANCE = new APIClient();
         }
         return INSTANCE;
@@ -48,6 +50,11 @@ public class APIClient implements APIInterface{
     @Override
     public Call<List<Pizza>> getPizzas() {
         return client.getPizzas();
+    }
+
+    @Override
+    public Call<List<Drink>> getDrinks() {
+        return client.getDrinks();
     }
 
     @Override

@@ -26,4 +26,6 @@
     <string name="signup_invalid_email">Email ist nicht valid.</string>
     <string name="signup_invalid_password">Passwort ist nicht valid.</string>
     <string name="signup_invalid_confirm_password">Passwort nicht richtig wiederholt.</string>
+    <string name="image_to_show_up_if_pizza_list_is_empty">Bild zum anzeigen, falls PizzaList leer</string>
+    <string name="pizza_detail_image">Pizza Detail Image</string>
 </resources>

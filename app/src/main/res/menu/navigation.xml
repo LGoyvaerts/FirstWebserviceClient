@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_food"
+        android:icon="@drawable/ic_pizza_empty_list"
+        android:actionLayout="@layout/pizza_products"
+        android:title="@string/title_food"/>
+
+    <item
+        android:id="@+id/navigation_drinks"
+        android:icon="@drawable/ic_water_glass"
+        android:actionLayout="@layout/pizza_products"
+        android:title="@string/title_drinks" />
+
+    <item
+        android:id="@+id/navigation_cart"
+        android:icon="@drawable/ic_cart"
+        android:actionLayout="@layout/pizza_products"
+        android:title="@string/title_cart" />
+
+</menu>

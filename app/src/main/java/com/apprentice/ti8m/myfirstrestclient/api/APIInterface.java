@@ -1,5 +1,6 @@
 package com.apprentice.ti8m.myfirstrestclient.api;
 
+import com.apprentice.ti8m.myfirstrestclient.model.Drink;
 import com.apprentice.ti8m.myfirstrestclient.model.Pizza;
 import com.apprentice.ti8m.myfirstrestclient.model.User;
 
@@ -21,6 +22,9 @@ public interface APIInterface {
 
     @GET("api/rest/pizzas")
     Call<List<Pizza>> getPizzas();
+
+    @GET("api/rest/drinks")
+    Call<List<Drink>> getDrinks();
 
     @POST("api/rest/users/create")
     Call<Void> createUser(@Body User body);

@@ -27,4 +27,18 @@
     <string name="signup_invalid_password">Password not valid.</string>
     <string name="signup_invalid_confirm_password">Password not confirmed right.</string>
     <string name="pizza_list_empty">Pizza List Empty</string>
+    <string name="image_to_show_up_if_pizza_list_is_empty">Image to show up if Pizza List is Empty</string>
+    <string name="pizza_detail_image">Pizza Detail Image</string>
+    <string name="product_ingredients_textview">Ingredients</string>
+    <string name="product_nutrition_information_description">Nutrition Information</string>
+    <string name="product_ingredients_description">Ingredients</string>
+    <string name="product_nutrition_per_100g">per 100g</string>
+    <string name="product_nutrition_energy_description">Energy</string>
+    <string name="product_nutrition_fat_description">Fat</string>
+    <string name="product_nutrition_protein_description">Protein</string>
+    <string name="product_price_price_description">Price:</string>
+    <string name="title_food">Food</string>
+    <string name="title_drinks">Drinks</string>
+    <string name="title_cart">Cart</string>
+    <string name="drink_list_empty">Drink List Empty</string>
 </resources>
