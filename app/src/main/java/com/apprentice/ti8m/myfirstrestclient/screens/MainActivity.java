@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     DrinkDataAdapter drinkDataAdapter;
     ImageView emptyListImageView;
     TextView emptyListTextView;
+    Toolbar mActionBarToolbar;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,13 +45,14 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_food:
+                    mActionBarToolbar.setTitle("Pizzas");
                     FrameLayout pizzas_layout = findViewById(R.id.pizzas_layout);
                     FrameLayout drinks_layout = findViewById(R.id.drinks_layout);
                     drinks_layout.setVisibility(GONE);
                     pizzas_layout.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_drinks:
-                    //TODO create DrinkActivitiy
+                    mActionBarToolbar.setTitle("Drinks");
                     drinks_layout = findViewById(R.id.drinks_layout);
                     pizzas_layout = findViewById(R.id.pizzas_layout);
                     pizzas_layout.setVisibility(GONE);
@@ -73,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mActionBarToolbar = findViewById(R.id.my_toolbar);
+        mActionBarToolbar.setTitle("Pizzas");
+        mActionBarToolbar.setTitleTextColor(getResources().getColor(R.color.white, this.getTheme()));
+        setSupportActionBar(mActionBarToolbar);
+
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -83,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     initViewsWithEmptyList();
                 }
                 initPizzaViews(pizzas);
+                pizzaDataAdapter.notifyDataSetChanged();
             }
         };
         new PizzaLoadingTask(pizzaListener, APIClient.getInstance()).execute();
@@ -94,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     initViewsWithEmptyList();
                 }
                 initDrinkViews(drinks);
+                drinkDataAdapter.notifyDataSetChanged();
             }
         };
         new DrinkLoadingTask(drinkListener, APIClient.getInstance()).execute();
@@ -108,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(getBaseContext(),
                 DividerItemDecoration.VERTICAL));
         pizzaDataAdapter = new PizzaDataAdapter(pizzas);
+        pizzaDataAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(pizzaDataAdapter);
+        pizzaDataAdapter.notifyDataSetChanged();
     }
 
     private void initDrinkViews(List<Drink> drinks) {

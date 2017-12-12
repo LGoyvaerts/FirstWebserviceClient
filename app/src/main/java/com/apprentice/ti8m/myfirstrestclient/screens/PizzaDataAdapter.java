@@ -1,9 +1,11 @@
 package com.apprentice.ti8m.myfirstrestclient.screens;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,6 +52,18 @@ public class PizzaDataAdapter extends RecyclerView.Adapter<PizzaDataAdapter.View
         String price = "Price: " + result.toString();
         viewHolder.pizza_price.setText(price);
 
+        viewHolder.plus_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(viewHolder.plus_button.getContext(), ProductDetailActivity.class);
+                intent.putExtra("Name", pizzas.get(i).getName());
+                intent.putExtra("Price", pizzas.get(i).getPrice());
+                intent.putExtra("Ingredients", pizzas.get(i).getIngredients());
+                viewHolder.plus_button.getContext().startActivity(intent);
+            }
+        });
+
+
         GlideApp.with(viewHolder.pizza_image.getContext())
                 .load(pizzas.get(i).getImagepath())
                 .apply(RequestOptions.circleCropTransform())
@@ -65,6 +79,7 @@ public class PizzaDataAdapter extends RecyclerView.Adapter<PizzaDataAdapter.View
     class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView pizza_image;
         private TextView pizza_name, pizza_price;
+        private ImageButton plus_button;
 
         ViewHolder(View view) {
             super(view);
@@ -73,6 +88,7 @@ public class PizzaDataAdapter extends RecyclerView.Adapter<PizzaDataAdapter.View
 
             pizza_name = view.findViewById(R.id.pizza_name);
             pizza_price = view.findViewById(R.id.pizza_price);
+            plus_button = view.findViewById(R.id.pizza_plus_button);
         }
     }
 }

@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_pizzashop_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppThemeNoAppBar">
         <activity
             android:name=".screens.login.LoginActivity">
             <intent-filter>
@@ -30,7 +30,11 @@
         </activity>
         <activity
             android:name=".screens.MainActivity"
-            android:label="List of Pizzas">
+            android:label="Pizzas">
+        </activity>
+        <activity
+            android:name=".screens.ProductDetailActivity"
+            android:label="Product Overview">
         </activity>
     </application>
 

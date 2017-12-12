@@ -1,6 +1,5 @@
-<android.support.constraint.ConstraintLayout
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="72dp">
@@ -10,12 +9,12 @@
         android:id="@+id/drink_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginStart="16dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -26,8 +25,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="0dp"
         android:fontFamily="sans-serif"
-        android:textSize="16sp"
         android:textColor="@color/colorPizzaName"
+        android:textSize="16sp"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintLeft_toRightOf="@+id/drink_image"
         app:layout_constraintRight_toRightOf="parent"
@@ -38,12 +37,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/drink_image"
-        app:layout_constraintLeft_toRightOf="@+id/drink_image"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:fontFamily="sans-serif"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/drink_image"
+        app:layout_constraintLeft_toRightOf="@+id/drink_image"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageButton
+        android:id="@+id/drink_plus_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="72dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_add_black_24dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/plus_button_for_each_recyclerview_card" />
 
 </android.support.constraint.ConstraintLayout>

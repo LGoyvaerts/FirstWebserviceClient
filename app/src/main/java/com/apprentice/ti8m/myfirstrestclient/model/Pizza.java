@@ -21,6 +21,9 @@ public class Pizza {
     @SerializedName("imagepath")
     private String imagepath;
 
+    @SerializedName("ingredients")
+    private String ingredients;
+
 
     public Pizza(String name, Float price, String imagepath) {
         this.name = name;
@@ -33,6 +36,18 @@ public class Pizza {
         this.name = name;
         this.price = price;
         this.id = id;
+    }
+
+    public Pizza(String name, Float price, String imagepath, String ingredients) {
+
+        this.name = name;
+        this.price = price;
+        this.imagepath = imagepath;
+        this.ingredients = ingredients;
+    }
+
+    public String getIngredients() {
+        return ingredients;
     }
 
     public String getImagepath() {

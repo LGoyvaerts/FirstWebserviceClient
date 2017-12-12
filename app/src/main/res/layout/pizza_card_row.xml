@@ -46,4 +46,17 @@
         android:textSize="14sp"
         app:layout_constraintRight_toRightOf="parent" />
 
+    <ImageButton
+        android:id="@+id/pizza_plus_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="72dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_add_black_24dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/plus_button_for_each_recyclerview_card" />
+
 </android.support.constraint.ConstraintLayout>

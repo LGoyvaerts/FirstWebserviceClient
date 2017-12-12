@@ -41,4 +41,5 @@
     <string name="title_drinks">Drinks</string>
     <string name="title_cart">Cart</string>
     <string name="drink_list_empty">Drink List Empty</string>
+    <string name="plus_button_for_each_recyclerview_card">Plus Button for each Recyclerview-Card</string>
 </resources>
