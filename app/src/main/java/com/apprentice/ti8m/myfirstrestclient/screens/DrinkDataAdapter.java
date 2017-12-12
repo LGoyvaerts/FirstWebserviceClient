@@ -1,4 +1,4 @@
-package com.apprentice.ti8m.myfirstrestclient;
+package com.apprentice.ti8m.myfirstrestclient.screens;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.model.Drink;
 import com.apprentice.ti8m.myfirstrestclient.utils.GlideApp;
 import com.bumptech.glide.request.RequestOptions;
@@ -34,7 +35,7 @@ public class DrinkDataAdapter extends RecyclerView.Adapter<DrinkDataAdapter.View
 
     @Override
     public DrinkDataAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_row, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.drink_card_row, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -68,10 +69,10 @@ public class DrinkDataAdapter extends RecyclerView.Adapter<DrinkDataAdapter.View
         ViewHolder(View view) {
             super(view);
 
-            drink_image = view.findViewById(R.id.product_image);
+            drink_image = view.findViewById(R.id.drink_image);
 
-            drink_name = view.findViewById(R.id.product_name);
-            drink_price = view.findViewById(R.id.product_price);
+            drink_name = view.findViewById(R.id.drink_name);
+            drink_price = view.findViewById(R.id.drink_price);
         }
     }
 }

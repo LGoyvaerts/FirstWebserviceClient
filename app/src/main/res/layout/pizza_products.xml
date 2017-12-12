@@ -9,13 +9,13 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/card_recycler_view"
+        android:id="@+id/card_recycler_view_pizzas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp"
-        tools:listitem="@layout/card_row">
+        tools:listitem="@layout/pizza_card_row">
 
     </android.support.v7.widget.RecyclerView>
 

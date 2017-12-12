@@ -35,7 +35,7 @@ public class PizzaDataAdapter extends RecyclerView.Adapter<PizzaDataAdapter.View
 
     @Override
     public PizzaDataAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_row, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.pizza_card_row, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -69,10 +69,10 @@ public class PizzaDataAdapter extends RecyclerView.Adapter<PizzaDataAdapter.View
         ViewHolder(View view) {
             super(view);
 
-            pizza_image = view.findViewById(R.id.product_image);
+            pizza_image = view.findViewById(R.id.pizza_image);
 
-            pizza_name = view.findViewById(R.id.product_name);
-            pizza_price = view.findViewById(R.id.product_price);
+            pizza_name = view.findViewById(R.id.pizza_name);
+            pizza_price = view.findViewById(R.id.pizza_price);
         }
     }
 }

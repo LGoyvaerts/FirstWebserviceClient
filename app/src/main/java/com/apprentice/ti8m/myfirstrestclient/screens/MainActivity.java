@@ -16,7 +16,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.apprentice.ti8m.myfirstrestclient.DrinkDataAdapter;
 import com.apprentice.ti8m.myfirstrestclient.R;
 import com.apprentice.ti8m.myfirstrestclient.api.APIClient;
 import com.apprentice.ti8m.myfirstrestclient.asynctask.DrinkLoadingTask;
@@ -45,11 +44,13 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_food:
                     FrameLayout pizzas_layout = findViewById(R.id.pizzas_layout);
+                    FrameLayout drinks_layout = findViewById(R.id.drinks_layout);
+                    drinks_layout.setVisibility(GONE);
                     pizzas_layout.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_drinks:
                     //TODO create DrinkActivitiy
-                    FrameLayout drinks_layout = findViewById(R.id.drinks_layout);
+                    drinks_layout = findViewById(R.id.drinks_layout);
                     pizzas_layout = findViewById(R.id.pizzas_layout);
                     pizzas_layout.setVisibility(GONE);
                     drinks_layout.setVisibility(View.VISIBLE);
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initPizzaViews(List<Pizza> pizzas) {
-        recyclerView = findViewById(R.id.card_recycler_view);
+        recyclerView = findViewById(R.id.card_recycler_view_pizzas);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDrinkViews(List<Drink> drinks) {
-        recyclerView = findViewById(R.id.card_recycler_view);
+        recyclerView = findViewById(R.id.card_recycler_view_drinks);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViewsWithEmptyList() {
-        recyclerView = findViewById(R.id.card_recycler_view);
+        recyclerView = findViewById(R.id.card_recycler_view_drinks);
         recyclerView.setVisibility(GONE);
         emptyListImageView = findViewById(R.id.pizza_image_empty_list);
         emptyListTextView = findViewById(R.id.pizza_empty_textview);
